@@ -45,7 +45,7 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-saas-black flex flex-col">
       <Head>
-        <title>Login - QR Maker</title>
+        <title>Login - FREE QR</title>
         <meta name="description" content="Login to your QR Maker account." />
       </Head>
       

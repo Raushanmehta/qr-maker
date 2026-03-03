@@ -7,7 +7,7 @@ export function Layout({ children, isLoggedIn, handleLogout }) {
   return (
     <div className="flex flex-col min-h-screen">
       <Head>
-        <title>QR Maker - Create Custom QR Codes</title>
+        <title>FREE QR - Create Custom QR Codes</title>
         <meta name="description" content="Generate custom colored QR codes with logos instantly." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>

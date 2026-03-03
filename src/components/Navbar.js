@@ -19,9 +19,10 @@ export function Navbar({ isLoggedIn, handleLogout }) {
         {/* Left Side: Logo */}
         <div className="flex items-center gap-6 xl:gap-8">
           <Link href="/" className="flex items-center gap-2 mr-2">
-            <span className="font-bold text-saas-orange text-[22px] tracking-wide font-sans ml-1">
-              QR Maker
-            </span>
+            <img src="/logo.png" alt="Logo" className="w-full h-10 object-contain" />
+            {/* <span className="font-bold text-saas-orange text-[22px] tracking-wide font-sans ml-1 uppercase">
+              Free QR
+            </span> */}
           </Link>
         </div>
 

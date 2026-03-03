@@ -3,18 +3,7 @@ import { motion } from 'framer-motion';
 export function Loader() {
   return (
     <div className="flex flex-col items-center justify-center py-20 w-full animate-fade-in">
-      <motion.div
-        animate={{
-          rotate: 360,
-        }}
-        transition={{
-          duration: 1,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="w-12 h-12 border-4 border-saas-orange border-t-transparent rounded-full mb-4"
-      />
-      <p className="text-gray-400 font-medium animate-pulse">Loading QRs...</p>
+      <p className="text-gray-400 font-medium animate-pulse text-lg tracking-widest uppercase">Loading...</p>
     </div>
   );
 }
@@ -34,8 +23,11 @@ export function PageLoader() {
         }}
         className="mb-8"
       >
-        <div className="text-4xl font-extrabold text-white flex items-center gap-2">
-            <span className="text-saas-orange italic">QR</span>Maker
+        <div className="flex flex-col items-center gap-4">
+            <img src="/logo.png" alt="Logo" className="w-16 h-16 object-contain" />
+            <div className="text-4xl font-extrabold text-white flex items-center gap-2">
+                <span className="text-saas-orange italic">FREE</span>QR
+            </div>
         </div>
       </motion.div>
       <motion.div

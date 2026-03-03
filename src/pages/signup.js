@@ -45,7 +45,7 @@ export default function Signup() {
   return (
     <div className="min-h-screen bg-saas-black flex flex-col">
       <Head>
-        <title>Sign Up - QR Maker</title>
+        <title>Sign Up - FREE QR</title>
         <meta name="description" content="Create a new QR Maker account." />
       </Head>
       
