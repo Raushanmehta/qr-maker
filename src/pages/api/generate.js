@@ -1,6 +1,5 @@
 import dbConnect from '../../lib/dbConnect';
-import QRCodeModel from '../../models/QRCode'; // Renamed to avoid reserved word conflict
-import User from '../../models/User';
+import QRCodeModel from '../../models/QRCode'; 
 import QRCode from 'qrcode';
 import jwt from 'jsonwebtoken';
 

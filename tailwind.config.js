@@ -2,11 +2,11 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
+    './src/pages/**/*.{js,jsx}',
+    './src/components/**/*.{js,jsx}',
+    './src/app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
-	],
+  ],
   theme: {
     container: {
       center: true,
@@ -22,6 +22,8 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        "saas-black": "#121212",
+        "saas-orange": "#F86E28",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
