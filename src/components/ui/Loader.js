@@ -24,7 +24,6 @@ export function PageLoader() {
         className="mb-8"
       >
         <div className="flex flex-col items-center gap-4">
-            <img src="/logo.png" alt="Logo" className="w-16 h-16 object-contain" />
             <div className="text-4xl font-extrabold text-white flex items-center gap-2">
                 <span className="text-saas-orange italic">FREE</span>QR
             </div>
