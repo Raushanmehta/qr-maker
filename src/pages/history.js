@@ -5,10 +5,12 @@ import { motion } from 'framer-motion';
 
 import { Layout } from '@/components/Layout';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Loader } from '@/components/ui/Loader';
 
 export default function History() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [generatedQRs, setGeneratedQRs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -23,6 +25,7 @@ export default function History() {
   }, []);
 
   const fetchQRs = async (token) => {
+    setLoading(true);
     try {
       const res = await fetch('/api/generate', {
         headers: { Authorization: `Bearer ${token}` },
@@ -38,6 +41,8 @@ export default function History() {
     } catch (err) {
       console.error(err);
       toast.error('Failed to fetch QR codes');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -87,8 +92,10 @@ export default function History() {
               <CardTitle className="text-2xl text-white font-bold">QR Code History</CardTitle>
           </CardHeader>
           <CardContent>
-              {generatedQRs.length === 0 ? (
-              <p className="text-gray-400 text-center py-10">No QR codes generated yet.</p>
+              {loading ? (
+                <Loader />
+              ) : generatedQRs.length === 0 ? (
+              <p className="text-gray-400 text-center py-20">No QR codes generated yet.</p>
               ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
                   {generatedQRs.map((qr, index) => (
