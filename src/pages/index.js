@@ -81,7 +81,12 @@ export default function Home() {
   };
 
   return (
-    <Layout isLoggedIn={isLoggedIn} handleLogout={handleLogout}>
+    <Layout 
+      isLoggedIn={isLoggedIn} 
+      handleLogout={handleLogout}
+      title="FREE QR Generator - Create Custom QR Codes"
+      description="Create beautiful, customized QR codes with our free tool. Highly scalable, color-customizable, and perfect for dynamic linking."
+    >
       <QRTypeSelector qrType={qrType} setQrType={setQrType} />
       <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] 
       gap-8 bg-saas-black">

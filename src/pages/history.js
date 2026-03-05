@@ -81,7 +81,12 @@ export default function History() {
   };
 
   return (
-    <Layout isLoggedIn={isLoggedIn} handleLogout={handleLogout}>
+    <Layout 
+      isLoggedIn={isLoggedIn} 
+      handleLogout={handleLogout}
+      title="History - Your Target Links & Codes"
+      description="View history of all active your QR Codes and analytics."
+    >
       <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

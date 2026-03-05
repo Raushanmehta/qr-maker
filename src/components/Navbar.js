@@ -48,9 +48,14 @@ export function Navbar({ isLoggedIn, handleLogout }) {
             Home
           </Link>
           {isLoggedIn && (
-            <Link href="/history" className={isActive('/history')}>
-              History
-            </Link>
+            <>
+              <Link href="/history" className={isActive('/history')}>
+                History
+              </Link>
+              <Link href="/account" className={isActive('/account')}>
+                Account
+              </Link>
+            </>
           )}
           <Link href="#" className="text-[14px] font-medium text-gray-300 hover:text-white transition-colors">
             Pricing
@@ -97,9 +102,14 @@ export function Navbar({ isLoggedIn, handleLogout }) {
                     Home
                 </Link>
                 {isLoggedIn && (
+                    <>
                     <Link href="/history" onClick={() => setIsMobileMenuOpen(false)} className={isActive('/history')}>
                     History
                     </Link>
+                    <Link href="/account" onClick={() => setIsMobileMenuOpen(false)} className={isActive('/account')}>
+                    Account
+                    </Link>
+                    </>
                 )}
                 <Link href="#" className="text-[14px] font-medium text-gray-300 hover:text-white transition-colors">
                     Pricing

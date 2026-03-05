@@ -5,6 +5,7 @@ const QRCodeSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+    index: true,
   },
   content: {
     type: String,
@@ -36,6 +37,10 @@ const QRCodeSchema = new mongoose.Schema({
   },
   password: {
     type: String, // Simple password for link protection
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
   },
   color: {
     type: String,

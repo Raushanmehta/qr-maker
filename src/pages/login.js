@@ -45,8 +45,18 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-saas-black flex flex-col">
       <Head>
-        <title>Login - FREE QR</title>
-        <meta name="description" content="Login to your QR Maker account." />
+        <title>Login to Dashboard - FREE QR</title>
+        <meta name="description" content="Login to your FREE QR Maker account to manage dynamic custom QR codes." />
+        <meta name="keywords" content="login, qr login, dynamic qr dashboard" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <meta property="og:title" content="Login to Dashboard - FREE QR" />
+        <meta property="og:description" content="Login to your FREE QR Maker account to manage dynamic custom QR codes." />
+        <meta property="og:type" content="website" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Login to Dashboard - FREE QR" />
+        <meta name="twitter:description" content="Login to your FREE QR Maker account to manage dynamic custom QR codes." />
       </Head>
       
       <Navbar isLoggedIn={false} />

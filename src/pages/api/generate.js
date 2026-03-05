@@ -60,11 +60,30 @@ export default async function handler(req, res) {
     }
   } else if (method === 'GET') {
     try {
-      const qrs = await QRCodeModel.find({ userId }).sort({ createdAt: -1 });
+      // Add .limit() and .lean() for high query performance and memory optimization to scale for massive user limits.
+      const qrs = await QRCodeModel.find({ userId })
+        .sort({ createdAt: -1 })
+        .limit(100)
+        .lean();
       res.status(200).json({ success: true, data: qrs });
     } catch (error) {
       res.status(400).json({ success: false, message: error.message });
     }
+  } else if (method === 'PATCH') {
+     try {
+       const { id, isActive } = req.body;
+       const updated = await QRCodeModel.findOneAndUpdate(
+         { _id: id, userId },
+         { isActive: Boolean(isActive) },
+         { new: true }
+       );
+       if (!updated) {
+          return res.status(404).json({ success: false, message: 'QR not found or unauthorized' });
+       }
+       res.status(200).json({ success: true, data: updated });
+     } catch (error) {
+       res.status(400).json({ success: false, message: error.message });
+     }
   } else if (method === 'DELETE') {
      try {
        const { id } = req.body;

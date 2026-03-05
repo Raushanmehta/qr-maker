@@ -45,8 +45,18 @@ export default function Signup() {
   return (
     <div className="min-h-screen bg-saas-black flex flex-col">
       <Head>
-        <title>Sign Up - FREE QR</title>
-        <meta name="description" content="Create a new QR Maker account." />
+        <title>Sign Up - Create Custom QR Codes</title>
+        <meta name="description" content="Create a new free account for FREE QR to build, design, and manage scalable QR codes." />
+        <meta name="keywords" content="signup, create qr account, free qr generator signup" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <meta property="og:title" content="Sign Up - Create Custom QR Codes" />
+        <meta property="og:description" content="Create a new free account for FREE QR to build, design, and manage scalable QR codes." />
+        <meta property="og:type" content="website" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sign Up - Create Custom QR Codes" />
+        <meta name="twitter:description" content="Create a new free account for FREE QR to build, design, and manage scalable QR codes." />
       </Head>
       
       <Navbar isLoggedIn={false} />
