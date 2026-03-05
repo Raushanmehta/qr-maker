@@ -1,7 +1,18 @@
 import { motion } from 'framer-motion';
-import { FiXCircle, FiDownload } from 'react-icons/fi';
+import { FiXCircle, FiDownload, FiLink } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
 
 export function QRDetailsModal({ selectedQR, onClose }) {
+  const [trackingUrl, setTrackingUrl] = useState('');
+
+  useEffect(() => {
+    if (selectedQR && selectedQR.shortCode) {
+      const host = window.location.host;
+      const protocol = window.location.protocol;
+      setTrackingUrl(`${protocol}//${host}/q/${selectedQR.shortCode}`);
+    }
+  }, [selectedQR]);
+
   if (!selectedQR) return null;
   
   return (
@@ -25,6 +36,16 @@ export function QRDetailsModal({ selectedQR, onClose }) {
           </div>
           
           <div className="space-y-4 text-sm">
+            {selectedQR.isDynamic && trackingUrl && (
+              <div>
+                <span className="text-saas-orange text-xs font-bold uppercase tracking-wider block mb-1">Dynamic Tracking URL</span>
+                <div className="bg-saas-orange/10 border border-saas-orange/20 p-2 rounded-lg text-saas-orange break-all font-mono text-[10px] flex items-center gap-2">
+                  <FiLink className="flex-shrink-0" />
+                  {trackingUrl}
+                </div>
+              </div>
+            )}
+
             <div>
               <span className="text-gray-400 block mb-1">Target / Content</span>
               <div className="bg-white/5 p-3 rounded-lg text-white break-all font-mono text-xs">
@@ -34,13 +55,13 @@ export function QRDetailsModal({ selectedQR, onClose }) {
             
             <div className="flex justify-between items-center pb-2 border-b border-white/10">
               <span className="text-gray-400">Total Scans</span>
-              <span className="font-bold text-saas-orange">{selectedQR.scanCount || 0}</span>
+              <span className="font-bold text-saas-orange text-lg">{selectedQR.scanCount || 0}</span>
             </div>
             
             <div className="flex justify-between items-center pb-2 border-b border-white/10">
               <span className="text-gray-400">Status</span>
-              <span className={selectedQR.isActive !== false ? "text-green-400" : "text-red-400"}>
-                {selectedQR.isActive !== false ? "Active" : "Inactive"}
+              <span className={selectedQR.isActive !== false ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+                {selectedQR.isActive !== false ? "● Active" : "○ Inactive"}
               </span>
             </div>
             

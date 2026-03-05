@@ -3,6 +3,16 @@ import QRCodeModel from '../../models/QRCode';
 import QRCode from 'qrcode';
 import jwt from 'jsonwebtoken';
 
+// Unique code generator (Alternative to nanoid)
+const generateShortCode = (length = 8) => {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+};
+
 export default async function handler(req, res) {
   const { method } = req;
 
@@ -25,10 +35,27 @@ export default async function handler(req, res) {
 
   if (method === 'POST') {
     try {
-      const { content, label, color, bgColor, logo, size } = req.body;
+      const { content, label, color, bgColor, logo, size, isDynamic = true } = req.body;
 
       if (!content) {
         return res.status(400).json({ success: false, message: 'Content is required' });
+      }
+
+      // Generate a unique short code
+      let shortCode = generateShortCode(8);
+      let existing = await QRCodeModel.findOne({ shortCode });
+      while(existing) {
+        shortCode = generateShortCode(8);
+        existing = await QRCodeModel.findOne({ shortCode });
+      }
+
+      // Determin the content to be encoded in the QR
+      let qrContent = content;
+      if (isDynamic) {
+        // Construct the tracking URL
+        const protocol = req.headers['x-forwarded-proto'] || 'http';
+        const host = req.headers.host;
+        qrContent = `${protocol}://${host}/q/${shortCode}`;
       }
 
       // Generate QR Code with colors
@@ -37,20 +64,24 @@ export default async function handler(req, res) {
           dark: color || '#000000',
           light: bgColor || '#ffffff'
         },
-        width: size ? parseInt(size) : 300
+        width: size ? parseInt(size) : 300,
+        margin: 2,
+        errorCorrectionLevel: 'H' // High error correction for logo support
       };
       
-      const qrImage = await QRCode.toDataURL(content, qrOptions);
+      const qrImage = await QRCode.toDataURL(qrContent, qrOptions);
 
       // Save to database
       const newQR = await QRCodeModel.create({
         userId,
-        content,
+        content, // The target URL/Text
         label: label || content.substring(0, 20),
         qrImage,
         color: color || '#000000',
         bgColor: bgColor || '#ffffff',
         logo,
+        shortCode,
+        isDynamic,
       });
 
       res.status(201).json({ success: true, data: newQR });

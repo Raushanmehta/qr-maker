@@ -49,9 +49,6 @@ export function Navbar({ isLoggedIn, handleLogout }) {
           </Link>
           {isLoggedIn && (
             <>
-              <Link href="/history" className={isActive('/history')}>
-                History
-              </Link>
               <Link href="/account" className={isActive('/account')}>
                 Account
               </Link>
@@ -103,9 +100,6 @@ export function Navbar({ isLoggedIn, handleLogout }) {
                 </Link>
                 {isLoggedIn && (
                     <>
-                    <Link href="/history" onClick={() => setIsMobileMenuOpen(false)} className={isActive('/history')}>
-                    History
-                    </Link>
                     <Link href="/account" onClick={() => setIsMobileMenuOpen(false)} className={isActive('/account')}>
                     Account
                     </Link>
