@@ -67,10 +67,8 @@ export async function getServerSideProps(context) {
   await dbConnect();
 
   try {
-    // Add lightweight edge caching to drastically reduce server hits for the same QR code
-    context.res.setHeader('Cache-Control', 's-maxage=2, stale-while-revalidate=59');
-
     // Use .lean() to bypass heavy Mongoose Document overhead, accelerating response time by up to 5x
+    // Removed edge caching to ensure accurate 1:1 scan counts and instant deactivate response
     const qr = await QRCodeModel.findOne({ shortCode: code }).lean();
     if (!qr) {
       return { props: { error: 'QR Code not found' } };
@@ -96,11 +94,11 @@ export async function getServerSideProps(context) {
       };
     }
 
-    // Increment scan count atomically and asynchronously for high-scale performance
-    QRCodeModel.updateOne(
+    // Increment scan count atomically, awaited so serverless functions don't freeze the process
+    await QRCodeModel.updateOne(
       { _id: qr._id },
       { $inc: { scanCount: 1 } }
-    ).catch(err => console.error('Error incrementing scan count:', err));
+    );
 
     return {
       redirect: {
