@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
-import { Layout } from '@/components/Layout';
+import { AccountLayout } from '@/components/account/AccountLayout';
 import { StatsGrid } from '@/components/account/StatsGrid';
 import { QRTable } from '@/components/account/QRTable';
 import { QRDetailsModal } from '@/components/account/QRDetailsModal';
@@ -107,12 +107,7 @@ export default function AccountDashboard() {
   };
 
   return (
-    <Layout 
-      isLoggedIn={isLoggedIn} 
-      handleLogout={handleLogout}
-      title="Dashboard - FREE QR Analytics"
-      description="Manage your custom QR codes, view scan counts, and toggle active status."
-    >
+    <AccountLayout title="Dashboard - FREE QR Analytics">
       <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -140,6 +135,6 @@ export default function AccountDashboard() {
         />
         
       </motion.div>
-    </Layout>
+    </AccountLayout>
   );
 }

@@ -30,6 +30,8 @@ export default function Login() {
       const data = await res.json();
       if (data.success) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('userName', data.user?.username || 'User');
+        localStorage.setItem('userEmail', data.user?.email || '');
         toast.success('Login Successful');
         router.push('/');
       } else {

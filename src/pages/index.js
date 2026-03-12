@@ -6,7 +6,9 @@ import { Layout } from '@/components/Layout';
 import { QRTypeSelector } from '@/components/home/QRTypeSelector';
 import { QRFormSection } from '@/components/home/QRFormSection';
 import { QRListSection } from '@/components/home/QRListSection';
-
+import QrStepsSection from '@/components/home/QrStepsSection';
+import FaqSection from '@/components/home/FaqSection';
+import BannerSection from '@/components/home/BannerSection';
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [generatedQRs, setGeneratedQRs] = useState([]);
@@ -97,6 +99,9 @@ export default function Home() {
           handleDelete={handleDelete} 
         />
       </div>
+      <QrStepsSection/>
+      {/* <BannerSection/> */}
+      <FaqSection/>
     </Layout>
   );
 }
